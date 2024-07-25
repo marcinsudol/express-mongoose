@@ -1,0 +1,46 @@
+{
+  _id: new ObjectId('66a10e294ee6bbd1d782c887'),
+  name: 'Batman',
+  year: 1989,
+  __v: 0
+},{
+  _id: new ObjectId('66a10f6dc934453e150ae066'),
+  name: 'Batman',
+  year: 1989,
+  __v: 0
+},{
+  _id: new ObjectId('66a10f942d7d9d1a44456b24'),
+  name: 'Batman',
+  year: 1989,
+  __v: 0
+},{
+  _id: new ObjectId('66a111f9546a313207e8081a'),
+  title: 'Batman returns',
+  year: 1991,
+  __v: 0
+},{
+  _id: new ObjectId('66a112001ed51e10f5e0d8f7'),
+  title: 'Batman returns',
+  year: 1991,
+  __v: 0
+},{
+  _id: new ObjectId('66a1122852202cb88db274bf'),
+  title: 'Batman returns',
+  year: 1991,
+  __v: 0
+},{
+  _id: new ObjectId('66a1122952202cb88db274c0'),
+  title: 'Superman',
+  year: 1992,
+  __v: 0
+},{
+  _id: new ObjectId('66a1123d424d396961f9c044'),
+  title: 'Batman returns',
+  year: 1991,
+  __v: 0
+},{
+  _id: new ObjectId('66a1123d424d396961f9c045'),
+  title: 'Superman',
+  year: 1992,
+  __v: 0
+}

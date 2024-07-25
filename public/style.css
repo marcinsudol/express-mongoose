@@ -1,0 +1,13 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: aliceblue;
+}
+
+header {
+    font-size: 20px;
+    margin: 10px;
+}
+
+input {
+    background-color: white;
+}
