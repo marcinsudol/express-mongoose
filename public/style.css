@@ -1,13 +1,65 @@
 * {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: aliceblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
 }
 
 header {
-    font-size: 20px;
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+a {
+    padding: 5px;
     margin: 10px;
+}
+
+#form-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+form div {
+    display: flex;
+    flex-direction: row;
+}
+
+label {
+    width: 20%;
+    margin: 5px;
+    flex: 0 0 60px;
 }
 
 input {
     background-color: white;
+    border-radius: 5px;
+    margin: 5px;
+    border-style: solid;
+    flex: 1 0 auto;
+}
+
+button {
+    background-color: cornflowerblue;
+    color: aliceblue;
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border-style: none;
 }

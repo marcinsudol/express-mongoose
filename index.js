@@ -77,13 +77,15 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
-app.get('/add', (req, res) => {
+app.route('/add').get((req, res) => {
     res.sendFile(path.join(__dirname, "views", "addmovie.html"));
-});
-
-app.post('/add', (req, res) => {
+}).post((req, res) => {
     addMovie(req.body.title, req.body.year);
     res.end("Movie added");
+});
+
+app.route('/find').get((req, res) => {
+    res.sendFile(path.join(__dirname, "views", "findmovie.html"));
 });
 
 app.listen(process.env.PORT);
