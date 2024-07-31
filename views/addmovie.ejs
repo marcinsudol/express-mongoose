@@ -21,6 +21,9 @@
                 </div>
                 <button type="submit">Add</button>
             </form>
+            <% if(locals.message) { %>
+                <p><%= message %></p>
+            <% } %>
         </div>
     </body>
 </html>

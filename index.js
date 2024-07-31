@@ -69,6 +69,7 @@ getMovies().then(
 
 
 const app = express();
+app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -78,14 +79,16 @@ app.get('/', (req, res) => {
 });
 
 app.route('/add').get((req, res) => {
-    res.sendFile(path.join(__dirname, "views", "addmovie.html"));
+    // res.render(path.join(__dirname, "views", "addmovie.ejs"));
+    res.render("addmovie");
 }).post((req, res) => {
     addMovie(req.body.title, req.body.year);
-    res.end("Movie added");
+    res.render("addmovie", { message: "The movie was added!" });
 });
 
 app.route('/find').get((req, res) => {
-    res.sendFile(path.join(__dirname, "views", "findmovie.html"));
+    // res.sendFile(path.join(__dirname, "views", "findmovie.ejs"));
+    res.render("findmovie");
 });
 
 app.listen(process.env.PORT);
