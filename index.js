@@ -107,7 +107,7 @@ app.route('/find').get((req, res) => {
     res.render("findmovie");
 }).post((req,res) => {
     findMoviesByTitle(req.body.title).then(
-        (movies) => { res.render("findmovie"); }
+        (movies) => { res.render("findmovie", { searchResult: movies }); }
     );
 });
 

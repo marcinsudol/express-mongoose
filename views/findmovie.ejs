@@ -18,5 +18,15 @@
                 <button type="submit">Find</button>
             </form>
         </div>
+        <% if(locals.searchResult) { %>
+            <div id="search-results">
+                <h3 id="search-results-header">Movies found:</h3>
+                <ul>
+                    <% searchResult.forEach((movie) => { %>
+                        <li><%= movie.title %> (<%= movie.year %>)</li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
     </body>
 </html>
