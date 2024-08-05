@@ -19,29 +19,43 @@ let movie = mongoose.model('Movie', movieSchema);
 
 
 
+/*
+Add movie to database
+*/
 async function addMovie(title, year) {
     let newMovie = new movie({title, year});
     await newMovie.save();
     console.log(`Added movie: ${title} - ${year}`);
 };
 
+
+
 /*
-addMovie("Batman returns", 1991);
-addMovie("Superman", 1992);
+Find movie by title
 */
+async function findMoviesByTitle(pattern) {
+    let regExPattern = new RegExp(pattern, "i")
+    let movies = await movie.find( { title : { $regex : regExPattern } } );
+    return movies;
+}
 
 
 
-async function getMovies() {
+/*
+Get list of all movies
+*/
+async function getAllMovies() {
     let movies = await movie.find();
     return movies;
 }
 
 
 
-/* log movies into file with async await */
+/*
+Log movies into file with async await
+*/
 async function logMoviesToFile(filename) {
-    let movies = await getMovies();
+    let movies = await getAllMovies();
     fs.writeFile(filename, movies.toString(), (err) => {
         if (err) console.log(err.message);
     });
@@ -49,9 +63,11 @@ async function logMoviesToFile(filename) {
 
 
 
-/* log movies into file with promises */
+/*
+Log movies into file with promises
+*/
 function logMoviesToFile2(filename) {
-getMovies().then(
+getAllMovies().then(
     (movies) => {
         fs.writeFile(filename, movies.toString(), (err) => {
             if (err) console.log(err.message);
@@ -63,32 +79,38 @@ getMovies().then(
 
 
 
-//logMoviesToFile("./movies.txt");
-//logMoviesToFile2("./movies2.txt");
-
-
-
 const app = express();
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: false }));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
+
+
 app.route('/add').get((req, res) => {
-    // res.render(path.join(__dirname, "views", "addmovie.ejs"));
     res.render("addmovie");
 }).post((req, res) => {
-    addMovie(req.body.title, req.body.year);
-    res.render("addmovie", { message: "The movie was added!" });
+    addMovie(req.body.title, req.body.year).then(
+        () => { res.render("addmovie", { message: "The movie was added!" }); }
+    );
 });
 
+
+
 app.route('/find').get((req, res) => {
-    // res.sendFile(path.join(__dirname, "views", "findmovie.ejs"));
     res.render("findmovie");
+}).post((req,res) => {
+    findMoviesByTitle(req.body.title).then(
+        (movies) => { res.render("findmovie"); }
+    );
 });
+
+
 
 app.listen(process.env.PORT);
