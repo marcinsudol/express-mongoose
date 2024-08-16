@@ -8,7 +8,7 @@ const fs = require('fs');
 Connect to database
 ------------------------------------------------------- */
 mongoose.connect(process.env.MONGO_URI);
-console.log('Connection established');
+console.log('Connected to database');
 
 const movieSchema = new mongoose.Schema({
     title: { type: String, required: true },
@@ -25,7 +25,7 @@ Add movie to database
 async function addMovie(title, year) {
     let newMovie = new movie({title, year});
     await newMovie.save();
-    console.log(`Movie added: ${title} - ${year}`);
+    console.log(`Movie added: ${title} (${year})`);
 };
 
 
@@ -35,7 +35,7 @@ Find movie by title
 ------------------------------------------------------- */
 async function findMoviesByTitle(pattern) {
     let regExPattern = new RegExp(pattern, "i")
-    let movies = await movie.find( { title : { $regex : regExPattern } } );
+    let movies = await movie.find({ title : { $regex : regExPattern } }).sort({ title : 1 });
     return movies;
 }
 
@@ -45,7 +45,7 @@ async function findMoviesByTitle(pattern) {
 Get list of all movies
 ------------------------------------------------------- */
 async function getAllMovies() {
-    let movies = await movie.find();
+    let movies = await movie.find().sort({ title : 1 });
     return movies;
 }
 

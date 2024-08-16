@@ -1,14 +1,16 @@
 const express = require('express');
 const path = require('path');
-const database = require('./database');
+const db = require('./database');
+require('dotenv').config();
 
 
 
+const PORT = process.env.PORT;
 
 
 
 const app = express();
-console.log('Express created');
+console.log('Express app created');
 
 app.set('view engine', 'ejs');
 
@@ -26,7 +28,7 @@ app.get('/', (req, res) => {
 app.route('/add').get((req, res) => {
     res.render("addmovie");
 }).post((req, res) => {
-    database.addMovie(req.body.title, req.body.year).then(
+    db.addMovie(req.body.title, req.body.year).then(
         () => { res.render("addmovie", { message: "The movie was added!" }); }
     );
 });
@@ -36,11 +38,13 @@ app.route('/add').get((req, res) => {
 app.route('/find').get((req, res) => {
     res.render("findmovie");
 }).post((req,res) => {
-    database.findMoviesByTitle(req.body.title).then(
+    db.findMoviesByTitle(req.body.title).then(
         (movies) => { res.render("findmovie", { searchResult: movies }); }
     );
 });
 
 
 
-app.listen(process.env.PORT);
+app.listen(PORT);
+
+console.log(`Server listening at port ${PORT}`);
