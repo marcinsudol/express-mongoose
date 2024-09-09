@@ -39,8 +39,21 @@ app.route('/find').get((req, res) => {
     res.render("findmovie");
 }).post((req,res) => {
     db.findMoviesByTitle(req.body.title).then(
-        (movies) => { res.render("findmovie", { searchResult: movies }); }
+        (movies) => {
+            res.render("findmovie", { searchResult: movies });
+        }
     );
+});
+
+
+
+app.route('/movie/:id').get((req, res) => {
+    db.findMovieById(req.params.id).then((movie) => {
+        res.render("movie", { movie });
+    }).catch(() => {
+        // TODO: add here not found page
+        console.log("Movie not found");
+    });
 });
 
 

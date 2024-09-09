@@ -33,6 +33,16 @@ async function addMovie(title, year) {
 /* -------------------------------------------------------
 Find movie by title
 ------------------------------------------------------- */
+async function findMovieById(id) {
+    let result = await movie.findById(id);
+    return result;
+}
+
+
+
+/* -------------------------------------------------------
+Find movie by title
+------------------------------------------------------- */
 async function findMoviesByTitle(pattern) {
     let regExPattern = new RegExp(pattern, "i")
     let movies = await movie.find({ title : { $regex : regExPattern } }).sort({ title : 1 });
@@ -82,4 +92,4 @@ getAllMovies().then(
 /* -------------------------------------------------------
 Export
 ------------------------------------------------------- */
-module.exports = { addMovie, findMoviesByTitle, getAllMovies, logMoviesToFile, logMoviesToFile2 };
+module.exports = { addMovie, findMovieById, findMoviesByTitle, getAllMovies, logMoviesToFile, logMoviesToFile2 };
