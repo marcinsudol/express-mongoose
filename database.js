@@ -22,10 +22,15 @@ let movie = mongoose.model('Movie', movieSchema);
 /* -------------------------------------------------------
 Add movie to database
 ------------------------------------------------------- */
-async function addMovie(title, year) {
-    let newMovie = new movie({title, year});
-    await newMovie.save();
-    console.log(`Movie added: ${title} (${year})`);
+function addMovie(title, year) {
+    return new Promise((resolve, reject) => {
+        let newMovie = new movie({title, year});
+        newMovie.save().then(
+            () => { resolve(`Movie added: ${title} (${year})`); }
+        ).catch(
+            (error) => { reject(error); }
+        );
+    });
 };
 
 

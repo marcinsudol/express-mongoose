@@ -30,6 +30,8 @@ app.route('/add').get((req, res) => {
 }).post((req, res) => {
     db.addMovie(req.body.title, req.body.year).then(
         () => { res.render("addmovie", { message: "The movie was added!" }); }
+    ).catch(
+        (error) => { res.render("addmovie", { message: "Movie was not added because of the error: "+ error.message }); }
     );
 });
 
