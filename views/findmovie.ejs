@@ -23,7 +23,11 @@
                 <h3 id="search-results-header">Movies found:</h3>
                 <ul>
                     <% searchResult.forEach((movie) => { %>
-                        <li><%= movie.title %> (<%= movie.year %>)</li>
+                        <li>
+                            <a href= <%= "/movie/" + movie._id %> >
+                                <%= movie.title %> (<%= movie.year %>)
+                            </a>
+                        </li>
                     <% }) %>
                 </ul>
             </div>
