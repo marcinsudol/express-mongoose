@@ -25,7 +25,12 @@
                     <% searchResult.forEach((movie) => { %>
                         <li>
                             <a href= <%= "/movie/" + movie._id %> >
-                                <%= movie.title %> (<%= movie.year %>)
+                                <%= movie.title %>
+                                <% if(movie.year) { %>
+                                    (<%= movie.year %>)
+                                <% } else { %>
+                                    (-)
+                                <% } %>
                             </a>
                         </li>
                     <% }) %>
